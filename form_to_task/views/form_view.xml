@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+            #Cria a visualização do formulário
+        <record id="form_view" model="ir.ui.view">
+            <field name="name">form_view</field>
+            <field name="model">form.form</field>
+            <field name="arch" type="xml">
+                <form string="Formulário">
+                    <group>
+                        <field name="campaign_name" />
+                        <field name="campaign_type" />
+                        <field name="campaign_year" />
+                        <field name="campaign_brief" />
+                        <field name="campaign_validity" />
+                        <field name="project_id" />
+                        <button name="create_task" string="Criar Tarefa" type="object" class="oe_highlight" />
+
+                    </group>
+                    <footer>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+            #Cria a visão de lista  
+        <record id="form_tree_view" model="ir.ui.view">
+            <field name="name">form_tree_view</field>
+            <field name="model">form.form</field>
+            <field name="arch" type="xml">
+                <tree string="Formulário">
+                    <field name="campaign_name" />
+                    <field name="campaign_type" />
+                    <field name="campaign_year" />
+                    <field name="campaign_brief" />
+                    <field name="campaign_validity" />
+                    <field name="project_id" />
+                </tree>
+            </field>
+        </record>
+
+
+            #Cria a ação do formulário
+        <record id="form_action" model="ir.actions.act_window">
+            <field name="name">Formulário</field>
+            <field name="res_model">form.form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="form_view" />
+        </record>
+
+            #Cria o menu do formulário no menu definições
+        <menuitem id="form_menu" name="Formulário" parent="base.menu_administration" action="form_action" />
+
+    </data>
+
+
+</odoo>
+
+            
