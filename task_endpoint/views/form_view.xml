@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="form_template" name="Formulário Personalizado">
+        <!-- # Necessário a instalação do módulo website -->
+        <t t-call="website.layout">
+            <div class="container mt32">
+                <h1>Projeto</h1>
+                <select name="project_id" class="form-control" id="project_id" onchange="document.getElementById('selected_value').value=this.value">
+                    <option value="0">Selecione um projeto</option>
+                    <t t-foreach="projects" t-as="project">
+                        <option t-att-value="project.id">
+                            <t t-esc="project.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <hr/>
+            <div class="container mt32">
+                <h2>Atividade</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" class="form-control" id="name" name="name"/>
+                        <input type="hidden" class="form-control" id="selected_value" name="selected_value"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Descreva a atividade: </label>
+                        <textarea class="form-control" id="message" name="message">
+                            <t t-esc="message"/>
+                        </textarea>
+                    </div>
+                    <br/>
+                    <input type="submit" class="btn btn-primary" name="submit" value="Enviar"/>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>
