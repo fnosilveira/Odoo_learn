@@ -3,9 +3,18 @@
     <template id="form_template" name="Formulário Personalizado">
         <!-- # Necessário a instalação do módulo website -->
         <t t-call="website.layout">
-            <div class="container mt32">
+
+            <xpath expr="//div[@id='wrapwrap']/main" position="before">
+                <div class="container">
+                    <div class="alert alert-info mt16" role="alert">
+                        <strong>Olá</strong>, aqui você consegue listar e inserir atividades em um dos projetos ativos!
+                    </div>
+                </div>
+            </xpath>
+
+            <div class="container-sm mt32">
                 <h1>Projeto</h1>
-                <select name="project_id" class="form-control" id="project_id" onchange="document.getElementById('selected_value').value=this.value">
+                <select name="project_id" class="form-select" id="project_id" onchange="document.getElementById('selected_value').value=this.value">
                     <option value="0">Selecione um projeto</option>
                     <t t-foreach="projects" t-as="project">
                         <option t-att-value="project.id">
@@ -13,8 +22,11 @@
                         </option>
                     </t>
                 </select>
+                
             </div>
-            <hr/>
+            <div class="container-sm ">
+                <hr class="border border-3 opacity-100"/>
+            </div>
             <div class="container mt32">
                 <h2>Atividade</h2>
                 <form method="post">
@@ -31,9 +43,29 @@
                         </textarea>
                     </div>
                     <br/>
+                    <div class="form-group">
+                        <label for="attachment">Anexo: </label>
+                        <input type="file" id="attachment" name="attachment" class="file" multiple="true" data-show-upload="true" data-show-caption="true" lass="file" data-show-preview="true" />
+                    </div>
+                    <br/>
                     <input type="submit" class="btn btn-primary" name="submit" value="Enviar"/>
                 </form>
             </div>
+            <br/>
         </t>
     </template>
+
+    <template id="success_template" name="Sucesso">
+        <t t-call="website.layout">
+            <div class="container mt32">
+                <h1>Atividade criada com sucesso!</h1>
+            </div>
+            <div class="container mt32">
+                <a href="/projetos" class="btn btn-primary">Voltar</a>
+            </div>
+            <br/>
+        </t>
+    </template>
+
+
 </odoo>
